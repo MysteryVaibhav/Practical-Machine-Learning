@@ -5,6 +5,7 @@ from sklearn import preprocessing, cross_validation, svm
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 from matplotlib import style
+import pickle
 
 style.use('ggplot')
 
@@ -35,9 +36,16 @@ y = np.array(df['label'])
 x_train, x_test, y_train, y_test = cross_validation.train_test_split(x,y,test_size=0.2)
 
 #Model
-clf = LinearRegression()
+#clf = LinearRegression()
 #Train
-clf.fit(x_train, y_train)
+#clf.fit(x_train, y_train)
+
+#For dumping the model
+#with open('linearregression.pickle','wb') as f:
+#    pickle.dump(clf, f)
+
+pickle_in = open('linearregression.pickle','rb')
+clf = pickle.load(pickle_in)
 #Test
 accuracy = clf.score(x_test, y_test)
 #Printing accuracy
